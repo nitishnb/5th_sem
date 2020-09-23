@@ -43,6 +43,39 @@ node* insert_rear(node* head, int x){
     return head;
 }
 
+node* delete_front(node* head){
+    if(head==NULL){
+        cout<<"List is empty!"<<endl;
+        return head;
+    }
+    if(head->ptr==NULL){
+        return NULL;
+    }
+    node* temp = head->ptr;
+    temp->ptr = XOR(temp->ptr, head);
+    return temp;
+}
+
+
+node* delete_rear(node* head){
+    if(head==NULL){
+        cout<<"List is empty!"<<endl;
+        return head;
+    }
+    if(head->ptr==NULL){
+        return NULL;
+    }
+    node *cur = head, *prev = NULL;
+    node *next;
+    while(cur->ptr!=prev){
+        next = XOR(prev, cur->ptr);
+        prev = cur;
+        cur = next;
+    }
+    prev->ptr = XOR(prev->ptr, cur);
+    return head;
+}
+
 
  void display(node* head)
  {
@@ -64,7 +97,7 @@ int main(){
     node* head = NULL;
     int option, t;
     do{
-        cout<<"\n\n1)Insert front\n2)Insert rear\n3)Display\n4)Exit\nEnter an option: ";
+        cout<<"\n\n1)Insert front\n2)Insert rear\n3)Delete front\n4)Delete rear\n5)Display\n6)Exit\nEnter an option: ";
         cin>>option;
         switch(option){
             case 1: cout<<"Inserting elements at front. Enter elements(-1 to exit)\n";
@@ -81,11 +114,15 @@ int main(){
                         cin>>t;
                     }
                    break;
-            case 3:display(head);
+            case 3:head = delete_front(head);
+                    break;
+            case 4:head = delete_rear(head);
+                    break;
+            case 5:display(head);
                    break;
-            case 4: break;
+            case 6: break;
             default: cout<<"Enter valid option\n";
         }
-    }while(option!=4);
+    }while(option!=6);
     return 0;
 }
