@@ -12,8 +12,8 @@ node* insert(node* head, int x){
     node* new_node = new node();
     node* temp = head;
     new_node->data = x;
+    srand(time(0));
     int level = (rand() % MAX_VAL)+1;
-    cout<<level<<endl;
     new_node->forward = new node*[level];
 	for(int i = MAX_VAL-1; i >= 0; i--){ 
 		while (temp->forward[i] != NULL && temp->forward[i]->data < x)
