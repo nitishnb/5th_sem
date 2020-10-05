@@ -3,10 +3,11 @@
 using namespace std; 
 
 
-typedef struct node{
+struct node{
     int data;
     node** forward;
 };
+
 
 node* insert(node* head, int x){
     node* new_node = new node();
@@ -32,12 +33,30 @@ void display(node* head) {
 		node *temp = head; 
 		cout << "Level " << i+1 << ": "; 
 		while (temp != NULL) { 
-			cout << temp->data<<" "; 
+            if(temp->data == -1)    cout<<"head->";
+			else    cout << temp->data<<" "; 
 			temp = temp->forward[i]; 
 		} 
 		cout << "\n"; 
 	} 
 }; 
+
+
+node* delete_node(node* head, int key){
+    for(int i = MAX_VAL-1 ;i>=0;i--){
+        node *temp = head;
+        while(temp->forward[i]!=NULL && temp->forward[i]->data < key)
+            temp = temp->forward[i];
+        if(temp->forward[i]!=NULL && temp->forward[i]->data == key)
+            temp->forward[i] = temp->forward[i]->forward[i];
+        else if(i==0){
+            cout<<key<<" is not found :("<<endl;
+            return head;
+        }
+    }
+    cout<<key<<" deleted successfully :)"<<endl;
+    return head;
+}
 
 
 int main(){
@@ -51,8 +70,18 @@ int main(){
     cin>>n;
     while(n!=-1){
         head = insert(head, n);
-        cout<<"Skip List after insertion of "<<n<<" is:"<<endl;
+        cout<<"\n\nSkip List after insertion of "<<n<<" is:"<<endl;
         display(head);
+        cout<<"\n\nEnter Element to insert into skip-list (-1 to exit): "<<endl;
+        cin>>n;
+    }
+    cout<<"\n\nEnter Element to delete from skip-list (-1 to exit): ";
+    cin>>n;
+    while(n!=-1){
+        head = delete_node(head, n);
+        cout<<"\n\nThe Skip List is : "<<endl;
+        display(head);
+        cout<<"\n\nEnter Element to delete from skip-list (-1 to exit): "<<endl;
         cin>>n;
     }
     return 0;
