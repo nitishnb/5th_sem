@@ -16,14 +16,14 @@ node* insert(node* head, int x){
     srand(time(0));
     int level = (rand() % MAX_VAL)+1;
     new_node->forward = new node*[level];
-	for(int i = MAX_VAL-1; i >= 0; i--){ 
-		while (temp->forward[i] != NULL && temp->forward[i]->data < x)
-			    temp = temp->forward[i];
+    for(int i = MAX_VAL-1; i >= 0; i--){ 
+	while (temp->forward[i] != NULL && temp->forward[i]->data < x)
+		temp = temp->forward[i];
 		if(i < level){
-            new_node->forward[i] = temp->forward[i];
-            temp->forward[i] = new_node; 
-        }
-	}
+            		new_node->forward[i] = temp->forward[i];
+            		temp->forward[i] = new_node; 
+        	}
+    }
     return head;
 }
 
@@ -33,7 +33,7 @@ void display(node* head) {
 		node *temp = head; 
 		cout << "Level " << i+1 << ": "; 
 		while (temp != NULL) { 
-            if(temp->data == -1)    cout<<"head->";
+            		if(temp->data == -1)    cout<<"head->";
 			else    cout << temp->data<<" "; 
 			temp = temp->forward[i]; 
 		} 
