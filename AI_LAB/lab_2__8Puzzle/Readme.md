@@ -1,1 +1,1 @@
-8 Puzzle using BFS, DFS
+8 Puzzle using BFS, DFS and Greedy
