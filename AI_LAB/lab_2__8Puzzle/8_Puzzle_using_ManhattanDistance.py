@@ -70,17 +70,13 @@ def gen(state, m, b): # m(move) is direction to slide, b(blank)is index of empty
     # create a copy of current state to test the move
     temp = copy.deepcopy(state)
     if m == 'u':
-        temp[b[0]][b[1]] = temp[b[0] - 1][b[1]]
-        temp[b[0] - 1][b[1]] = 0
+        temp[b[0]][b[1]] , temp[b[0] - 1][b[1]] = temp[b[0] - 1][b[1]] , temp[b[0]][b[1]]
     elif m == 'd':
-        temp[b[0]][b[1]] = temp[b[0] + 1][b[1]]
-        temp[b[0] + 1][b[1]] = 0
+        temp[b[0]][b[1]] , temp[b[0] + 1][b[1]] = temp[b[0] + 1][b[1]] , temp[b[0]][b[1]]
     elif m == 'l':
-        temp[b[0]][b[1]] = temp[b[0]][b[1] - 1]
-        temp[b[0]][b[1] - 1] = 0
+        temp[b[0]][b[1]] , temp[b[0]][b[1] - 1] = temp[b[0]][b[1] - 1] , temp[b[0]][b[1]]
     elif m == 'r':
-        temp[b[0]][b[1]] = temp[b[0]][b[1] + 1]
-        temp[b[0]][b[1] + 1] = 0
+        temp[b[0]][b[1]] , temp[b[0]][b[1] + 1] = temp[b[0]][b[1] + 1] , temp[b[0]][b[1]]
     # if move is to slide empty spot to the left and so on
     # return new state with tested move to later check if "src == target"
     return temp
