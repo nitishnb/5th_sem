@@ -1,1 +1,1 @@
-Computer Networks Lab 3
+Computer Networks Lab 3 - Static Routing
