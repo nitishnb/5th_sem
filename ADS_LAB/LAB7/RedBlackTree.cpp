@@ -3,13 +3,11 @@ using namespace std;
 
 enum Color {RED, BLACK};
 
-struct Node
-{
+struct Node{
 	int data;
 	bool color;
 	Node *left, *right, *parent;
-	Node(int data)
-	{
+	Node(int data){
 	this->data = data;
 	left = right = parent = NULL;
 	this->color = RED;
@@ -18,8 +16,7 @@ struct Node
 
 
 
-class RBTree
-{
+class RBTree{
 private:
 	Node *root;
 protected:
