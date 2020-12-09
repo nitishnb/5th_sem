@@ -33,11 +33,15 @@ void Hash::insertItem(int key){
 
 
 int Hash::search(int val) { 
-    for (int i = 0; i < BUCKET; i++){ 
-    	for (auto x : table[i]) 
-        	if(val == x)
-        	    return i;
+    int index = hashFunction(val); 
+     
+    list <int> :: iterator i; 
+    for (i = table[index].begin(); i != table[index].end(); i++) { 
+    	if (*i == val) 
+    	break; 
     } 
+    if (i != table[index].end()) 
+    	return index;
     return -1;
 } 
 
@@ -45,8 +49,7 @@ void Hash::deleteItem(int key){
     int index = hashFunction(key); 
      
     list <int> :: iterator i; 
-    for (i = table[index].begin(); 
-    		i != table[index].end(); i++) { 
+    for (i = table[index].begin(); i != table[index].end(); i++) { 
     	if (*i == key) 
     	break; 
     } 
