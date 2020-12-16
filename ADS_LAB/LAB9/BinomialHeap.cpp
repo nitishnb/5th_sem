@@ -29,23 +29,17 @@ Node* mergeBinomialTrees(Node *b1, Node *b2){
 
 
 
-list<Node*> unionBionomialHeap(list<Node*> l1,
-                               list<Node*> l2)
-{
-    // _new to another binomial heap which contain
-    // new heap after merging l1 & l2
+list<Node*> unionBionomialHeap(list<Node*> l1,list<Node*> l2){
     list<Node*> _new;
     list<Node*>::iterator it = l1.begin();
     list<Node*>::iterator ot = l2.begin();
     while (it!=l1.end() && ot!=l2.end())
     {
-        // if D(l1) <= D(l2)
         if((*it)->degree <= (*ot)->degree)
         {
             _new.push_back(*it);
             it++;
         }
-        // if D(l1) > D(l2)
         else
         {
             _new.push_back(*ot);
@@ -53,16 +47,14 @@ list<Node*> unionBionomialHeap(list<Node*> l1,
         }
     }
 
-    // if there remains some elements in l1
-    // binomial heap
+    
     while (it != l1.end())
     {
         _new.push_back(*it);
         it++;
     }
 
-    // if there remains some elements in l2
-    // binomial heap
+    
     while (ot!=l2.end())
     {
         _new.push_back(*ot);
